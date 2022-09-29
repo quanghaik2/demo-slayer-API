@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const path = require('path');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const app = express();
@@ -107,5 +108,10 @@ app.get("/v1/:NhanVat", (req,resp) =>{
         resp.status(500).json(err);
     }
 })
+
+app.get('/', (req, resp) =>{
+    resp.sendFile(path.join(__dirname, './index.html'));
+})
+
 // Run port 
 app.listen(process.env.PORT || port , () => console.log("listening on port"));
